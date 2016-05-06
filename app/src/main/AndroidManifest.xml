@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.findskilled.attendancesystem">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".FacMainPage">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".FacHomePage" />
+        <activity android:name=".AddBranch" />
+        <activity android:name=".TakeAttendance" />
+        <activity android:name=".SelectBranch" />
+        <activity android:name=".SelectSemester" />
+        <activity android:name=".SelectSection" />
+        <activity android:name=".StudentHomePage" />
+        <activity android:name=".ViewStudentForAttendance" />
+        <activity android:name=".AddSemester"></activity>
+    </application>
+
+</manifest>
