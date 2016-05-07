@@ -9,6 +9,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+
+
 /**
  * Created by lenovo on 05-05-2016.
  */
@@ -17,7 +19,7 @@ public class ServerReq {
     static String stream=null;
     public String FacultyValidation(String username,String password) throws IOException {
         try{
-            URL url = new URL("https://www.findskilled.in/ums/facultyValidate.php?username="+username+"&password="+password);
+            URL url = new URL("http://www.findskilled.in/ums/facultyValidate.php?username="+username+"&password="+password);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             //check the connection status
             if(urlConnection.getResponseCode() == 200) {
@@ -90,9 +92,9 @@ public class ServerReq {
 
     }
 
-    public String AddBranch(String fac_id,String branch_name) throws IOException {
+    public String AddBranch(Integer fac_id,String branch_name) throws IOException {
         try{
-            URL url = new URL("https://www.findskilled.in/ums/AddBranch.php?fac_id="+fac_id+"&branch_name="+branch_name);
+            URL url = new URL("http://www.findskilled.in/ums/addBranch.php?fac_id="+fac_id+"&branch_name="+branch_name);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             //check the connection status
             if(urlConnection.getResponseCode() == 200) {
@@ -127,9 +129,9 @@ public class ServerReq {
 
 
     }
-    public String BranchName(String fac_id) throws IOException {
+    public String BranchName(Integer fac_id) throws IOException {
         try{
-            URL url = new URL("https://www.findskilled.in/ums/AddBranch.php?fac_id="+fac_id);
+            URL url = new URL("http://www.findskilled.in/ums/viewBranch.php?fac_id="+fac_id);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             //check the connection status
             if(urlConnection.getResponseCode() == 200) {

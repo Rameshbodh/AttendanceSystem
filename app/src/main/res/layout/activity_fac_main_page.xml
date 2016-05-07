@@ -15,9 +15,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
         android:src="@drawable/logo"
-        android:layout_marginTop="40dp"
-        android:layout_alignParentTop="true"
         android:background="@color/colorAccent"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
     <EditText
@@ -28,10 +27,11 @@
         android:drawableLeft="@drawable/username"
         android:hint="username"
         android:id="@+id/emailUN"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/borderstyle1"
         android:layout_below="@+id/imageView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="72dp"
-        android:background="@drawable/borderstyle1"/>
+        android:layout_alignLeft="@+id/password"
+        android:layout_alignStart="@+id/password" />
 
     <EditText
         android:layout_width="300dp"
@@ -52,12 +52,38 @@
         android:text="login"
         android:id="@+id/loginbtn"
         android:background="@color/colorPrimary"
-        android:layout_marginTop="46dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/imageView"
+        android:layout_toEndOf="@+id/imageView" />
+
+    <RadioGroup
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1"
+        android:id="@+id/radioGroup"
         android:layout_below="@+id/password"
-        android:layout_alignRight="@+id/password"
-        android:layout_alignEnd="@+id/password"
-        android:layout_alignLeft="@+id/password"
-        android:layout_alignStart="@+id/password" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="74dp"
+            android:text="Faculty"
+            android:id="@+id/radioButton"
+            android:checked="false"
+            android:textSize="25dp"
+            android:layout_weight="0.28" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Student"
+            android:id="@+id/radioButton2"
+            android:checked="false"
+            android:textSize="25dp"
+            android:layout_weight="0.13" />
+
+    </RadioGroup>
 
 
 </RelativeLayout>

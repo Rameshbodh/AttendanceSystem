@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">AttendanceSystem</string>
+    <string name="app_name">Attendance System</string>
+    <string name="login_type">
+    <item name="fac">Faculty</item>
+    <item name="student">Student</item>
+    </string>
 </resources>

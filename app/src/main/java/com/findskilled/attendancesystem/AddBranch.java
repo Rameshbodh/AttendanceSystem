@@ -8,7 +8,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,118 +27,142 @@ public class AddBranch extends AppCompatActivity {
 ListView lvs;
 ArrayList<String> list=new ArrayList<>();
     String branchname;
-
-    String id;
+    Integer id;
+    private Button add;
+    private RadioButton branch;
+    private RadioGroup select_branch;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_branch);
 
         Intent m = getIntent();
-     id =  m.getStringExtra("fac_id");
+        id = m.getIntExtra("fac_id",-1);
+        Toast.makeText(AddBranch.this, " OK "+id, Toast.LENGTH_SHORT).show();
 
+        add=(Button)findViewById(R.id.add_branch);
+        select_branch=(RadioGroup)findViewById(R.id.radioGroup);
 
-    lvs=(ListView)findViewById(R.id.listViews);
-        list.add("Computer Science Engineering");
-        list.add("Mechanical Engineering");
-        list.add("Eletrical Engineering");
-        list.add("Electronics Communication Engineering");
-        list.add("Civil Engineering");
-        list.add("Automobile Engineering");
-lvs.setAdapter(new ArrayAdapter<String>(AddBranch.this, android.R.layout.simple_list_item_1, list));
-
-        lvs.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        add.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-              branchname =list.get(position);
+            public void onClick(View v) {
 
+                int selectedId=select_branch.getCheckedRadioButtonId();
+                branch=(RadioButton)findViewById(selectedId);
 
+                if(branch.getText().equals("Computer Science"))
+                {
+                   branchname = branch.getText().toString();
+                    Connect con = new Connect();
+                    con.execute();
+                }
+                else if(branch.getText().equals("Mechanical Engineering"))
+                {
+                    branchname = branch.getText().toString();
+                    Connect con = new Connect();
+                    con.execute();
+                }
+                else if(branch.getText().equals("Electrical Engineering"))
+                {
+                    branchname = branch.getText().toString();
+                    Connect con = new Connect();
+                    con.execute();
+                }
+                else if(branch.getText().equals("Electronics Communication Engineering"))
+                {
+                    branchname = branch.getText().toString();
+                    Connect con = new Connect();
+                    con.execute();
+                }
+                else if(branch.getText().equals("Civil Engineering"))
+                {
+                    branchname = branch.getText().toString();
+                    Connect con = new Connect();
+                    con.execute();
+                }
+                else if(branch.getText().equals("Automobile Engineering"))
+                {
+                    branchname = branch.getText().toString();
+                    Connect con = new Connect();
+                    con.execute();
+                }
 
             }
         });
-    }
 
-    class Connect extends AsyncTask<Void,Void,Void>
-    {
-        String ide;
-SweetAlertDialog alert;
+             }
 
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
+             class Connect extends AsyncTask<Void, Void, Void> {
+                 String ide;
+                 SweetAlertDialog alert;
 
-
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            //int fac = Integer.parseInt(fac_id);
-            if(ide=="0")
-            {
-                new SweetAlertDialog(AddBranch.this)
-                        .setTitleText("Branch Name already exist  ..!")
-                        .show();
-
-            }
-            if(ide=="1")
-            {
-
-                new SweetAlertDialog(AddBranch.this)
-                        .setTitleText("Branch Name Added Successfully  ..!")
-                        .show();
+                 @Override
+                 protected void onPreExecute() {
+                     super.onPreExecute();
 
 
+                 }
 
-            }
-            if(ide=="2")
-            {
-                new SweetAlertDialog(AddBranch.this)
-                        .setTitleText("Can not add Branch Name ..!")
-                        .show();
+                 @Override
+                 protected void onPostExecute(Void aVoid) {
+                     super.onPostExecute(aVoid);
+                     //int fac = Integer.parseInt(fac_id);
+                     Toast.makeText(AddBranch.this, " OK "+ide, Toast.LENGTH_SHORT).show();
+                     if (ide == "0") {
+                         new SweetAlertDialog(AddBranch.this)
+                                 .setTitleText("Branch Name already exist  ..!")
+                                 .show();
 
-            }
-        }
+                     }
+                     if (ide == "1") {
 
-        @Override
-        protected Void doInBackground(Void... params) {
-            ServerReq req= new ServerReq();
-            String a;
-            try {
-                a = req.AddBranch(id,branchname);
-                JsonResponce(a);
-            }
-            catch (Exception e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-
-            return null;
-        }
-        public void JsonResponce(String s) throws JSONException {
+                         new SweetAlertDialog(AddBranch.this)
+                                 .setTitleText("Branch Name Added Successfully  ..!")
+                                 .show();
 
 
+                     }
+                     if (ide == "2") {
+                         new SweetAlertDialog(AddBranch.this)
+                                 .setTitleText("Can not add Branch Name ..!")
+                                 .show();
 
-            JSONObject json=new JSONObject(s);
-            JSONArray jarray=json.getJSONArray("user");
+                     }
+                 }
+
+                 @Override
+                 protected Void doInBackground(Void... params) {
+                     ServerReq req = new ServerReq();
+                     String a;
+                     try {
+                         a = req.AddBranch(id, branchname);
+                         JsonResponce(a);
+                     } catch (Exception e) {
+                         // TODO Auto-generated catch block
+                         e.printStackTrace();
+                     }
+
+                     return null;
+                 }
+
+                 public void JsonResponce(String s) throws JSONException {
 
 
-            for(int i=0;i<=jarray.length();i++)
-            {
-
-                JSONObject jobj =jarray.getJSONObject(i);
+                     JSONObject json = new JSONObject(s);
+                     JSONArray jarray = json.getJSONArray("user");
 
 
-                ide=jobj.getString("id");
+                     for (int i = 0; i <= jarray.length(); i++) {
 
-            }
-
-        }
-    }
+                         JSONObject jobj = jarray.getJSONObject(i);
 
 
+                         ide = jobj.getString("id");
+
+                     }
+
+                 }
+             }
 
 
-
-
-}
+         }

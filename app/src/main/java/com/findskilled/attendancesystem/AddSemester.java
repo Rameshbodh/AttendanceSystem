@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,6 +27,9 @@ ListView branchList;
         setContentView(R.layout.activity_add_semester);
         Intent m = getIntent();
        fac_id= m.getStringExtra("fac_id");
+
+
+         Toast.makeText(AddSemester.this, "" + fac_id, Toast.LENGTH_LONG).show();
         branchList=(ListView)findViewById(R.id.listView2);
         Connect con =new Connect();
         con.execute();
@@ -66,7 +70,7 @@ ListView branchList;
             ServerReq req= new ServerReq();
             String a;
             try {
-                a = req.BranchName(fac_id);
+                a = req.BranchName(1);
                 JsonResponce(a);
             }
             catch (Exception e) {
