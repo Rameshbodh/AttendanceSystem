@@ -17,13 +17,17 @@ public class FacHomePage extends AppCompatActivity {
 ListView lv;
     ArrayList<String> list = new ArrayList<>();
     Button logout;
-    Integer id;
+
+//    Integer id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fac_home_page);
         Intent m = getIntent();
-        id = m.getIntExtra("fac_id",-1);
+        String id=m.getStringExtra("fac_id");
+
+
+  //      id = m.getIntExtra("fac_id",-1);
         lv=(ListView)findViewById(R.id.listitem);
         logout=(Button)findViewById(R.id.button2);
         list.add("Add Branch");
@@ -33,13 +37,15 @@ ListView lv;
         list.add("Attendence");
         list.add("Notice");
         list.add("Change Password");
-        Toast.makeText(FacHomePage.this, " Faculty ID " + id, Toast.LENGTH_SHORT).show();
+
         lv.setAdapter(new ArrayAdapter<String>(FacHomePage.this, android.R.layout.simple_list_item_1, list));
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                 if (position == 0) {
                     Intent main = new Intent(FacHomePage.this, AddBranch.class);
+                    Toast.makeText(FacHomePage.this, " Faculty ID " + id, Toast.LENGTH_SHORT).show();
                     main.putExtra("fac_id",id);
                     startActivity(main);
                 } else if(position == 1) {

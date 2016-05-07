@@ -110,7 +110,7 @@ public class FacMainPage extends AppCompatActivity {
             else
             {
                 Intent m = new Intent(FacMainPage.this,FacHomePage.class);
-                m.putExtra("fac_id",fac);
+                m.putExtra("fac_id",fac_id);
                 startActivity(m);
             }
         }

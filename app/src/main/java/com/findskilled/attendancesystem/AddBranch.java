@@ -27,7 +27,8 @@ public class AddBranch extends AppCompatActivity {
 ListView lvs;
 ArrayList<String> list=new ArrayList<>();
     String branchname;
-    Integer id;
+  //  Integer id;
+    String id;
     private Button add;
     private RadioButton branch;
     private RadioGroup select_branch;
@@ -37,7 +38,8 @@ ArrayList<String> list=new ArrayList<>();
         setContentView(R.layout.activity_add_branch);
 
         Intent m = getIntent();
-        id = m.getIntExtra("fac_id",-1);
+        id=m.getStringExtra("fac_id");
+  //      id = m.getIntExtra("fac_id",-1);
         Toast.makeText(AddBranch.this, " OK "+id, Toast.LENGTH_SHORT).show();
 
         add=(Button)findViewById(R.id.add_branch);
@@ -134,8 +136,9 @@ ArrayList<String> list=new ArrayList<>();
                  protected Void doInBackground(Void... params) {
                      ServerReq req = new ServerReq();
                      String a;
+                     int ide =Integer.parseInt(id);
                      try {
-                         a = req.AddBranch(id, branchname);
+                         a = req.AddBranch(ide, branchname);
                          JsonResponce(a);
                      } catch (Exception e) {
                          // TODO Auto-generated catch block
